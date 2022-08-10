@@ -104,10 +104,10 @@ int main(void)
 	/******IMU初始化*******/	
 	HAL_Delay(500);			// 必须加延时！  否则上电时 mpu6050 初始化会失败
 	//成功初始化后 uart_node节点正常运行 LED红灯闪烁
-	icm20602_init(ICM20602_CS_Pointer[0]);
-	icm20602_init(ICM20602_CS_Pointer[1]);
-	icm20602_init(ICM20602_CS_Pointer[2]);
-	icm20602_init(ICM20602_CS_Pointer[3]);
+//	icm20602_init(ICM20602_CS_Pointer[0]);
+//	icm20602_init(ICM20602_CS_Pointer[1]);
+//	icm20602_init(ICM20602_CS_Pointer[2]);
+//	icm20602_init(ICM20602_CS_Pointer[3]);
 	
 	HAL_Delay(500);	
 	/******获取加电时角速度的静态误差*******/		
