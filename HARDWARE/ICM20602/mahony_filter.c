@@ -118,14 +118,12 @@ void Attitude_Computation(Filter6axisTypeDef filter,struct IMU_data *imu)
 		
 }
 
+extern int In_Motion;
 
 void IMUupdate(struct ICM_CS_POINTER Pointer, struct IMU_data *imu, Filter6axisTypeDef *filter)
 {
 	float calibrated_gyro[3];
 //	get_icm20602_data(Pointer, imu);//放在IMUs_update中了
-	
-	//初代IMU防漂移措施 亟待改进 很多时候z轴并不朝上
-	imu->GyroAverageCalibration[2] = alpha*imu->GyroAverageCalibration[2] + (1-alpha)*imu->AngularVelocity[2];
 	
 	calibrated_gyro[0] = imu->AngularVelocity[0] - imu->GyroAverageCalibration[0];
 	calibrated_gyro[1] = imu->AngularVelocity[1] - imu->GyroAverageCalibration[1];
@@ -146,6 +144,9 @@ void IMUs_update(struct ICM_CS_POINTER Pointer[], struct IMU_data imu[], Filter6
 		{
 			get_icm20602_data(Pointer[i], &imu[i]);
 		}
+		
+		//初代IMU防漂移措施 亟待改进 很多时候z轴并不朝上
+		if(!In_Motion) imu[i].GyroAverageCalibration[2] = alpha*imu[i].GyroAverageCalibration[2] + (1-alpha)*imu[i].AngularVelocity[2];
 		
 		IMUupdate(Pointer[i], &imu[i], &filter[i]);
 	}

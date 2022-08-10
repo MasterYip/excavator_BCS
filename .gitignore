@@ -1,0 +1,17 @@
+# C++ compiling files
+
+# *.o
+# *.d
+# *.crf
+
+# *.hex
+# *.htm
+# *.map
+# *.axf
+# *.dep
+# *.sct
+# *.lnp
+MDK-ARM/Excavator/
+
+
+

@@ -65,6 +65,8 @@ int Vector_Control_with_Time_Limited(struct TimebasedRevVector CtrlVector)
 {
 	int i=0;
 	static double motion_duration[MOTORNUMBER] = {0};
+	
+	In_Motion = 0;
 	for(i=0; i<MOTORNUMBER; i++)
 	{
 		motion_duration[i]-=TimePeriod;
@@ -81,6 +83,8 @@ int Vector_Control_with_Time_Limited(struct TimebasedRevVector CtrlVector)
 			Motor_Control(i, 0.0);
 			motion_duration[i]=0.0;
 		}
+		
+		if(motion_duration[i] > 0) In_Motion=1;
 	}
 	return 0;
 }

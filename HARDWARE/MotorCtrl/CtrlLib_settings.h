@@ -29,7 +29,7 @@ extern "C" {
 
 extern double MaxSpeed;
 extern int MaxPWM;
-
+extern int In_Motion;
 /* Variables Declaration -----------------------------------------------*/
 
 //小车参数
