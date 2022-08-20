@@ -37,7 +37,7 @@ void motor_cmd_Callback(const geometry_msgs::Twist& cmd_msg)
 
 void joint_state_cmd_Callback(const sensor_msgs::JointState& target_joint_state)
 {
-	PID_arm_controller(target_joint_state.position, target_joint_state.velocity, urdfAngles);
+	PID_arm_controller(target_joint_state.name, target_joint_state.position, target_joint_state.velocity, urdfAngles);
 }
 
 ros::Publisher joint_state_publisher("/joint_states", &present_joint_state);

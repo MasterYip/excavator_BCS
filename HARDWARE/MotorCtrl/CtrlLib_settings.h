@@ -133,7 +133,7 @@ int RevVector_Superposition(double VelocityVector[], double RevVector[]);
   * @param  
   * @retval 
   */
-int PID_arm_controller(double TargetAngles[], double TargetAngVel[], double PresentAngles[]);
+int PID_arm_controller(char* name[], double TargetAngles[], double TargetAngVel[], double PresentAngles[]);
 
 /* Abstract_layer */
 void Velocity_Set(double VelocityVector[]);
