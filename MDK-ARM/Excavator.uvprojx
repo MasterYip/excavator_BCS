@@ -335,7 +335,7 @@
               <MiscControls>--cpp11</MiscControls>
               <Define>USE_HAL_DRIVER,STM32F103xE</Define>
               <Undefine></Undefine>
-              <IncludePath>../Core/Inc;../Drivers/STM32F1xx_HAL_Driver/Inc;../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy;../Drivers/CMSIS/Device/ST/STM32F1xx/Include;../Drivers/CMSIS/Include;../HARDWARE/MPU6050_IIC_Hardware;../HARDWARE/MotorCtrl;../HARDWARE/sys;../HARDWARE/delay;../HARDWARE/usart;../HARDWARE;../MDK-ARM;../Libraries;../Libraries/ANO_Client;../Libraries/RobotArm;../Libraries/rosserial_stm32;../Libraries/rosserial_stm32/ros;../Libraries/ROS_Communication;../HARDWARE/ICM20602</IncludePath>
+              <IncludePath>../Core/Inc;../Drivers/STM32F1xx_HAL_Driver/Inc;../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy;../Drivers/CMSIS/Device/ST/STM32F1xx/Include;../Drivers/CMSIS/Include;../HARDWARE/MPU6050_IIC_Hardware;../HARDWARE/MotorCtrl;../HARDWARE/sys;../HARDWARE/delay;../HARDWARE/usart;../HARDWARE;../MDK-ARM;../Libraries;../Libraries/ANO_Client;../Libraries/RobotArm;../Libraries/rosserial_stm32;../Libraries/rosserial_stm32/ros;../Libraries/ROS_Communication;../HARDWARE/ICM20602;..\Libraries\USMART</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>

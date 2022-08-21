@@ -170,7 +170,7 @@ u8 usmart_get_fname(u8*str,u8*fname,u8 *pnum,u8 *rval)
 	if(pcnt)//接收完了
 	{
 		fpname[pcnt&0x7f]='\0';//加入结束符
-		if(usmart_strcmp(fpname,"void")==0)*rval=0;//不需要返回值
+		if(usmart_strcmp(fpname,(u8*)"void")==0)*rval=0;//不需要返回值
 		else *rval=1;							   //需要返回值
 		pcnt=0;
 	} 
@@ -237,7 +237,7 @@ u8 usmart_get_fname(u8*str,u8*fname,u8 *pnum,u8 *rval)
 	if(parmnum==1)//只有1个参数.
 	{
 		fpname[fplcnt]='\0';//加入结束符
-		if(usmart_strcmp(fpname,"void")==0)parmnum=0;//参数为void,表示没有参数.
+		if(usmart_strcmp(fpname,(u8*)"void")==0)parmnum=0;//参数为void,表示没有参数.
 	}
 	*pnum=parmnum;	//记录参数个数
 	*fname='\0';	//加入结束符
