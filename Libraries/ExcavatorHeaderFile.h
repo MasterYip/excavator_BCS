@@ -59,6 +59,9 @@ extern float AngleforRevision[4];
 /* Init Functions ---------------------------------------------------------*/
 void IMU_Data_Init(struct IMU_data imu[4]);
 
+
+/* Utility ---------------------------------------------------------*/
+void HALprintf(char *data);
 #ifdef __cplusplus
 }
 #endif

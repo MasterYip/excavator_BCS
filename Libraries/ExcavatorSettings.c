@@ -88,3 +88,10 @@ void IMU_Data_Init(struct IMU_data imu[4])
 	imu[3].QuaRevision[2] = 0;
 	imu[3].QuaRevision[3] = 0;
 }
+
+/* Utility ---------------------------------------------------------*/
+
+void HALprintf(char *data)
+{
+	HAL_UART_Transmit_DMA(&huart2, (uint8_t*)data, strlen(data));
+}
