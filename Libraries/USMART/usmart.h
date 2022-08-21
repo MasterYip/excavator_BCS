@@ -59,6 +59,7 @@ struct _m_usmart_dev
 extern struct _m_usmart_nametab usmart_nametab[];	//在usmart_config.c里面定义
 extern struct _m_usmart_dev usmart_dev;				//在usmart_config.c里面定义
 
+//__weak void HALprintf(char *data); //HAL快速打印
 
 void usmart_init(u8 sysclk);//初始化
 u8 usmart_cmd_rec(u8*str);	//识别

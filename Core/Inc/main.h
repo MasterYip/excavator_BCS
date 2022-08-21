@@ -32,7 +32,7 @@ extern "C" {
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "usart.h"
+#include "usart.h"//之前为什么放这里了？
 #include "ExcavatorHeaderFile.h"
 	
 /* USER CODE END Includes */

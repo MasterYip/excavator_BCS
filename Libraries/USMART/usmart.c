@@ -1,18 +1,54 @@
 #include "usmart.h"
-#include "usart.h"
+#include "stdio.h"
 #include "sys.h" 
+//#include "stm32f1xx_hal.h"
+
 
 TIM_HandleTypeDef TIM4_Handler;      //定时器句柄 
+
+/* printf fputc remap ---------------------------------------------------------*/
+//////////////////////////////////////////////////////////////////
+//加入以下代码,支持printf函数,而不需要选择use MicroLIB	  
+#if 1 //貌似发两次就卡住了 预编译跳过
+	#pragma import(__use_no_semihosting)
+	//标准库需要的支持函数                 
+	struct __FILE 
+	{ 
+		int handle; 
+
+	}; 
+
+	FILE __stdout;       
+	//定义_sys_exit()以避免使用半主机模式    
+	void _sys_exit(int x) 
+	{ 
+		x = x; 
+	} 
+	//重定义fputc函数 
+	int fputc(int ch, FILE *f)
+	{      
+		while((USART2->SR&0X40)==0);//循环发送,直到发送完毕   
+		USART2->DR = (uint8_t) ch;      
+		return ch;
+		
+	}
+#endif
+
+//__weak void HALprintf(char *data)
+//{
+//	HAL_UART_Transmit_DMA(&huart2, (uint8_t*)data, strlen(data));
+//}
+
 //系统命令
 u8 *sys_cmd_tab[]=
 {
-	"?",
-	"help",
-	"list",
-	"id",
-	"hex",
-	"dec",
-	"runtime",	   
+	(u8*)"?",
+	(u8*)"help",
+	(u8*)"list",
+	(u8*)"id",
+	(u8*)"hex",
+	(u8*)"dec",
+	(u8*)"runtime",	   
 };	    
 //处理系统指令
 //0,成功处理;其他,错误代码;
