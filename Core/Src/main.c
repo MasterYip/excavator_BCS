@@ -259,7 +259,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 			{
 				sprintf(data, "\r\n%.0f\t%.0f\t%.0f\t%.0f", Angles[0]*57.3,Angles[1]*57.3,Angles[2]*57.3, Angles[3]*57.3);
 //				HAL_UART_Transmit_DMA(&huart2, (uint8_t*)data, sizeof(data));
-				HALprintf(data);
+//				HALprintf(data);
 			}
 			
 

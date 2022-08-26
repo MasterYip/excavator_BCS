@@ -32,7 +32,7 @@ struct MotorAttrib MotorGroup[16]={
 //停止转动
 double STOPVector[MOTORNUMBER] = {0};
 //将机械臂抬升至最高
-double RevisionMotion[MOTORNUMBER] = {0,0,0,0.7,0.7,0.8};
+double RevisionMotion[MOTORNUMBER] = {0,0,0,0.7,0.7,0.9};
 
 //Control Vector
 struct TimebasedRevVector MOTOR_Stop 		={{0},{0}};

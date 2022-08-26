@@ -57,6 +57,8 @@ int RevVector_Superposition(double VelocityVector[], double RevVector[])
   */
 int PID_arm_controller(char* name[], double TargetAngles[], double TargetAngVel[], double PresentAngles[])
 {
+	char data[200]="";
+	
 	static float kp = 1;
 	static float kd = 0.05;
 	static float ki = 0;
@@ -64,43 +66,56 @@ int PID_arm_controller(char* name[], double TargetAngles[], double TargetAngVel[
 	static struct TimebasedRevVector CtrlVector = {{0}, 
 	{MOTOR_CTRL_DELAY,MOTOR_CTRL_DELAY,MOTOR_CTRL_DELAY,MOTOR_CTRL_DELAY,MOTOR_CTRL_DELAY,MOTOR_CTRL_DELAY}};
 	
-//	for(int i = 2; i<MOTORNUMBER; i++)
-//	{
-//		CtrlVector.RevVector[i] = 
-//			kp*(TargetAngles[i-2]-PresentAngles[i-2]) 
-//			- kd*(PresentAngles[i-2]-PreviousAngles[i-2])/TimePeriod
-//			+ TargetAngVel[i-2];
-//	}
-	
-	for(int i = 0; i<4; i++)
+	for(int i = 2; i<MOTORNUMBER; i++)
 	{
-		int k=0;
-		if(strcmp(name[i], "table_joint")==0)
-		{
-			k=2;
-		}
-		else if(strcmp(name[i], "link1_joint")==0)
-		{
-			k=3;
-		}
-		else if(strcmp(name[i], "link2_joint")==0)
-		{
-			k=4;
-		}
-		else if(strcmp(name[i], "ram_joint")==0)
-		{
-			k=5;
-		}
-		CtrlVector.RevVector[k] = 
-			kp*(TargetAngles[i]-PresentAngles[i]) 
-			- kd*(PresentAngles[i]-PreviousAngles[i])/TimePeriod
-			+ TargetAngVel[i];
+		CtrlVector.RevVector[i] = 
+			kp*(TargetAngles[i-2]-PresentAngles[i-2]) 
+			- kd*(PresentAngles[i-2]-PreviousAngles[i-2])/TimePeriod
+			+ TargetAngVel[i-2];
 	}
+	
+//	for(int i = 0; i<4; i++)
+//	{
+//		int k=-1;
+////		HALprintf("\r\n NAME: ");
+////		HALprintf(name[i]);
+////		if(strcmp(name[i], "table_joint")==0)
+////		{
+////			k=2;
+////		}
+////		else if(strcmp(name[i], "link1_joint")==0)
+////		{
+////			k=3;
+////		}
+////		else if(strcmp(name[i], "link2_joint")==0)
+////		{
+////			k=4;
+////		}
+////		else if(strcmp(name[i], "ram_joint")==0)
+////		{
+////			k=5;
+////		}
+//		k=i+2;
+//		
+//		if(k != -1)
+//		{
+//			CtrlVector.RevVector[k] = 
+//				kp*(TargetAngles[i]-PresentAngles[i]) 
+//				- kd*(PresentAngles[i]-PreviousAngles[i])/TimePeriod
+//				+ TargetAngVel[i];
+//		}
+//	}
 	
 	if(CtrlVector.RevVector[2] < 0.1)CtrlVector.RevVector[2]=0;
 	
+	//这玩意会把单片机搞死机 估计溢出了
+//	memcpy(PreviousAngles, PresentAngles, sizeof(double)*4);
 	
-	memcpy(PreviousAngles, PresentAngles, sizeof(double)*4);
+	PreviousAngles[0] = PresentAngles[0];
+	PreviousAngles[1] = PresentAngles[1];
+	PreviousAngles[2] = PresentAngles[2];
+	PreviousAngles[3] = PresentAngles[3];
+	
 	
 	Vector_Control_with_Time_Limited(CtrlVector);
 }
