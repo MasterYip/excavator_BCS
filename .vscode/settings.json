@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "stm32hardware.h": "c",
+        "node_handle.h": "c"
+    }
+}

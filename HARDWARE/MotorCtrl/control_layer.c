@@ -61,7 +61,7 @@ int PID_arm_controller(char* name[], double TargetAngles[], double TargetAngVel[
 	
 	static float kp = 1;
 	static float kd = 0.05;
-	static float ki = 0;
+	static float ki = 0; //暂时没有介入计算
 	static double PreviousAngles[4] = {0};
 	static struct TimebasedRevVector CtrlVector = {{0}, 
 	{MOTOR_CTRL_DELAY,MOTOR_CTRL_DELAY,MOTOR_CTRL_DELAY,MOTOR_CTRL_DELAY,MOTOR_CTRL_DELAY,MOTOR_CTRL_DELAY}};
@@ -106,7 +106,7 @@ int PID_arm_controller(char* name[], double TargetAngles[], double TargetAngVel[
 //		}
 //	}
 	
-	if(CtrlVector.RevVector[2] < 0.1)CtrlVector.RevVector[2]=0;
+//	if(CtrlVector.RevVector[2] < 0.1)CtrlVector.RevVector[2]=0;
 	
 	//这玩意会把单片机搞死机 估计溢出了
 //	memcpy(PreviousAngles, PresentAngles, sizeof(double)*4);
